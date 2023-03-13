@@ -5,7 +5,7 @@
     :key="item.id"
     @click="open(item,router)"
   >
-    <div class="w-full h-150px overflow-hidden" :class="$attrs.className">
+    <div class="w-full h-201px overflow-hidden" :class="$attrs.className">
       <img :src="item.cover" class="card_img w-full h-full rounded-5px" />
     </div>
     <div class="flex items-center relative p-10px card_text">

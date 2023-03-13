@@ -1,11 +1,10 @@
 <template>
   <div class="detail">
     <div class="header w-full bg">
-        <detail-header class="w-1000px m-auto"></detail-header>
+      <detail-header class="w-1300px m-auto"></detail-header>
     </div>
-    <div class="w-1000px m-auto">
-     
-      <div class=" w-full flex">
+    <div class="w-1300px m-auto">
+      <div class="w-full flex">
         <div class="detail_loading" v-if="!show">
           <div class="loading"></div>
         </div>
@@ -19,19 +18,22 @@
       </div>
     </div>
     <div class="footer w-full bg">
-        <detail-footer class=""/>
+      <detail-footer class="" />
     </div>
   </div>
 </template>
   
 <script  setup >
 import { useRoute } from 'vue-router'
+import { aesDecryptParams } from '~/utils/aes'
 const commandIframe = ref(null);
 const show = ref(false);
 const route = useRoute()
 const src = ref('')
 onMounted(() => {
-  src.value = route.query.url
+  const query = JSON.parse(aesDecryptParams(route.query.params))
+
+  src.value = query.url
   setTimeout(() => {
     if (commandIframe.value) {
       show.value = true;
@@ -41,14 +43,13 @@ onMounted(() => {
   </script>
   
   <style lang="scss" scoped>
-  .bg{
-    background: #fff;
-  }
+.bg {
+  background: #fff;
+}
 
-  .detail{
-    background: #f6f7fa;
-
-  }
+.detail {
+  background: #f6f7fa;
+}
 .detail_loading {
   position: absolute;
   display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1000px m-auto">
+  <div class="w-1300px m-auto">
     <div class="p-t-24px flex items-center mb-16px">
       <img src="/image/x-hot.png" class="m-r-10px" />
       <h2 class="text-15px font-600">相关推荐</h2>
@@ -8,15 +8,15 @@
       <div class="flex w-full gap-x-10px items-center">
         <card-detail :data="list"></card-detail>
         <div class="w-25% more py-10px px-14px">
-            <div class="grid grid-cols-3 gap-x-27px gap-y-13.2px">
+            <div class="grid grid-cols-3 gap-x-36px gap-y-13.2px">
             <div class="item"  v-for="item in data" :key="item.id">
-              <img :src="item.avatar" class="h-52px w-full rounded-8px" alt="" />
+              <img :src="item.avatar" class="h-72px w-full rounded-8px" alt="" />
               <div class="text_ text-center">
                 <span class="text-11px"> {{ item.name }} </span>
               </div>
             </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mt-12px">
               <div class="btn rounded-15px text-12px" @click="open">更多游戏</div>
             </div>
         </div>
@@ -31,6 +31,7 @@ import { useRoute,useRouter } from "vue-router";
 import CardDetail from "~/components/detail/CardDetail.vue";
 import { Item } from "~/types/data";
 import {getRandomIntInclusive} from '~/utils/randomRange'
+import { aesDecryptParams } from '~/utils/aes'
 const route = useRoute();
 const idlist = ref<Array<string>>([]);
 const list = ref<Array<Item>>([]);
@@ -74,8 +75,11 @@ const getdata = () => {
 };
 
 onMounted(() => {
-  if (route.query.arr) {
-    const { arr, id } = route.query;
+  if (route.query) {
+    const query=JSON.parse(aesDecryptParams(route.query.params) )
+
+    
+    const { arr, id } = query;
     // @ts-ignore
     idlist.value = arr.split(",");
     route_id = id;
