@@ -9,9 +9,11 @@
 
 <script setup lang="ts">
 import { appName } from '~/constants'
+const store = useGameJson()
+store.getData()
 let a = 'background: #606060; color: #fff; border-radius: 3px 0 0 3px;'
 let b = 'background: #1475B2; color: #fff; border-radius: 0 3px 3px 0;'
-console.log(`%currentVersion===> : %c 1.2.1 `, a, b)
+console.log(`%currentVersion===> : %c 1.4.0 `, a, b)
 useHead({
   title: appName,
 })

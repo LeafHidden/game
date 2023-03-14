@@ -26,45 +26,46 @@
 </template>
 
 <script setup lang="ts">
-import * as serverConfigJson from "~/public/mock.json";
+
 import { useRoute,useRouter } from "vue-router";
 import CardDetail from "~/components/detail/CardDetail.vue";
-import { Item } from "~/types/data";
+import { Item ,All} from "~/types/data";
 import {getRandomIntInclusive} from '~/utils/randomRange'
 import { aesDecryptParams } from '~/utils/aes'
 const route = useRoute();
 const idlist = ref<Array<string>>([]);
 const list = ref<Array<Item>>([]);
+const data=ref<Array<Item>>([]) 
+let serverData:All;
 let route_id: any;
-const {all}=serverConfigJson;
+const store = useGameJson()
 
-function  ranges(sum:number){
-    const arr:Array<number>=[];
-    const allData=[];
-    while(arr.length<sum){
-        let a=getRandomIntInclusive(0,all.data.length-1);
-        if(arr.includes(a)) break;
-        arr.push(a)
-        allData.push(all.data[a])
-    }    
-    return allData
+async function getServerJson (){
+    const {all}=store.getList
+    serverData=all
+    data.value=ranges(6)
+
+
+    
 }
-const data=ref(ranges(6)) 
-const router=useRouter()
-const open=()=>{
-    router.push('/')
-  }
-const getdata = () => {
-  const { all } = serverConfigJson;
+
+const getAllData = () => {
   let array: Array<Item> = [];
-  for (let i = 0; i < all.data.length; i++) {
-    const item = all.data[i];
+   
+    
+  for (let i = 0; i < serverData.data.length; i++) {
+    const item = serverData.data[i];
+  
+    
     if (array.length === 3) {
       return array;
     }
     for (let j = 0; j < item.classify.length; j++) {
       const itemChild = JSON.stringify(item.classify[j]);
+
       if (itemChild !== "99" && idlist.value.indexOf(itemChild) !== -1) {
+   
+        
         if (route_id === item.id) break;
         array.push(item);
         break;
@@ -74,16 +75,37 @@ const getdata = () => {
   return array;
 };
 
+getServerJson()
+
+
+function  ranges(sum:number){
+    const arr:Array<number>=[];
+    const allData=[];
+    while(arr.length<sum){
+        let a=getRandomIntInclusive(0,serverData.data.length-1);
+        if(arr.includes(a)) break;
+        arr.push(a)
+        allData.push(serverData.data[a])
+    }    
+    return allData
+}
+
+const router=useRouter()
+const open=()=>{
+    router.push('/')
+}
+
+
 onMounted(() => {
+
   if (route.query) {
     const query=JSON.parse(aesDecryptParams(route.query.params) )
-
-    
     const { arr, id } = query;
     // @ts-ignore
     idlist.value = arr.split(",");
+    list.value =getAllData();
     route_id = id;
-    list.value = getdata();
+   
 
     
   }

@@ -3,7 +3,13 @@
 export default class server{
 
    static async post(url:string,data:object){
-        return $fetch('https://www.waipu3.com'+url,{
+        return $fetch(url,{
+            method :"POST",
+            body:data
+        })
+    }
+    static async $get(url:string,data:object){
+        return $fetch(url,{
             method :"POST",
             body:data
         })

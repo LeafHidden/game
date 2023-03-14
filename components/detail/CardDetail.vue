@@ -11,7 +11,7 @@
     <div class="flex items-center relative p-10px card_text">
       <div class="ml-6px flex w-full items-center justify-between">
         <h3 class="text-16px font-550">{{ item.name }}</h3>
-        <button class="text-13px btn">秒完</button>
+        <button class="text-13px btn">秒玩</button>
       </div>
     </div>
   </div>

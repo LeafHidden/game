@@ -10,12 +10,17 @@
 
 <script setup lang="ts">
 
-import * as serverConfigJson from "~/public/mock.json";
 import {Item} from '~/types/data';
 
 const cardData = ref<Array<Item>>([]);
+    const store = useGameJson()
 const getdata = async () => {
-    cardData.value=serverConfigJson.hot.slice(0,3)
+    
+    const {hot}=store.getList;
+
+    
+    
+    cardData.value=hot.slice(0,3)
 };
 getdata()
 </script>

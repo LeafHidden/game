@@ -26,28 +26,36 @@
 
 <script setup lang="ts">
 import { useSorted } from "@vueuse/core";
-import {Item} from '~/types/data';
-import * as serverConfigJson from "~/public/mock.json";
+import {Item,Classify} from '~/types/data';
 import {getRandomIntInclusive} from '~/utils/randomRange'
 import { useEventBus } from '@vueuse/core'
 import {fooKey} from '~/utils/fookey'
 import Fuse from 'fuse.js'
 const bus = useEventBus(fooKey)
-
-
-
-
-
-
+const gameType = ref<Array<Classify>>([]);
 const cardData = ref<Array<Item>>([]);
 const activeInx = ref<string | null>("99");
 const loading = ref(false);
 const list = ref<Array<Item>>([]);
-const {all,classifys}=serverConfigJson
-const gameType = ref(classifys);
+const store = useGameJson()
+async function getData(){
+    const {all,classifys}=store.getList;
+    gameType.value=classifys
+    cardData.value =sorted(all.data,'99');
+    list.value = cardData.value;
 
-cardData.value =sorted(all.data,'99')  ;
-list.value = cardData.value;
+}
+getData()
+
+
+
+
+
+
+
+
+
+
 
 // fuse 搜索参数配置
 const options = {
@@ -61,12 +69,15 @@ const options = {
 const fuse = new Fuse(list.value, options)
 
 
+
 bus.on((e:string) => {
     if(!e) {
         cardData.value=list.value
         return
     }
     const result = fuse.search(e)
+    console.log(result);
+    
     if(result.length > 0) {
         const arr=result.map(item=>{
             return item.item
@@ -79,6 +90,7 @@ bus.on((e:string) => {
 
 const handoffClick = (val: any) => {
   activeInx.value = val.inx;
+//   排序
   collating(val.inx).then((res: any) => {
     cardData.value=[]
     setTimeout(() => {
@@ -123,11 +135,7 @@ const collating = async (inx: string) => {
 
 
 
-//FnApi 请求函数
 
-
-
-//
 </script>
 
 <style lang="scss" scoped>

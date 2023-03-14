@@ -14,8 +14,12 @@ export const default_obj:DEFAULT={
     data:[],
     key:{}
 }
+export function setItem(key:string,value:unknown){
+    localStorage.setItem(key,JSON.stringify(value))
+ }
 export function getItem(key:string){
-    return JSON.parse(localStorage.getItem(key)||'') 
+    if(localStorage.getItem(key))
+    return JSON.parse(localStorage.getItem(key)||'')
  }
 export  function storageAdd(data:Item){
     const state= useStorage(key_locael, default_obj, localStorage) 
