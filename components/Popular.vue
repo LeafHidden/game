@@ -1,7 +1,10 @@
 <template>
-  <div class="w-full container_bg mt-10px">
+  <div class="w-full 
+
+  container_bg mt-10px">
     <div class="flex items-center p-12px gap-x-15px gap-y-15px">
         <card 
+        className="sm:h-130px lg:h-230px"
         :data="cardData"
         ></card>
     </div>
@@ -31,7 +34,8 @@ getdata()
     display: flex;
     width: 100%;
     max-width: 100%;
-    height: 230px;
+    flex-basis: 33.3%;
+  
     >div:nth-child(1){
         position: absolute;
     width: 100%;

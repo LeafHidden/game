@@ -1,17 +1,21 @@
 <template>
   <!-- 搜索 -->
   <div class="w-full px-12px py-14px container_bg">
-    <div class="flex justify-between">
-      <div class="flex items-center">
+    <div class="flex justify-between sm:flex-wrap">
+      <div class="flex items-center sm:mb-20px md:mb-0 sm:flex-wrap" >
         <div class="mr-12px">
           <img src="/image/y-logo.png" alt="logo" />
         </div>
-        <div class="">
+        <div class="sm:mt-20px md:mt-0">
           <div class="flex items-center reactive">
             <input
-              class="search_input rd-5px rounded-r-none"
+              class="search_input rd-5px 
+              rounded-r-none     
+              sm:w-200px 
+              md:w-268px"
               type="text"
-              w="268px"
+           
+          
               p="y-6px x-17px"
               outline="none active:none"
               placeholder="请输入您要搜索的内容..."

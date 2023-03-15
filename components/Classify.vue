@@ -1,7 +1,7 @@
 <template>
   <div class="classify flex-grow w-full px-12px py-14px container_bg">
     <div>
-      <ul class="flex items-center gap-x-24px text-13px font-500 mb-10px">
+      <ul class="flex sm:flex-wrap md:flex-wrap items-center gap-x-24px text-13px font-500 mb-10px">
         <li
           class="cursor-pointer min-h-30px classify_li leading-30px"
           v-for="item in gameType"
@@ -76,7 +76,7 @@ bus.on((e:string) => {
         return
     }
     const result = fuse.search(e)
-    console.log(result);
+
     
     if(result.length > 0) {
         const arr=result.map(item=>{

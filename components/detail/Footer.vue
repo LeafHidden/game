@@ -1,23 +1,40 @@
 <template>
-  <div class="w-1300px m-auto">
+  <div class="   sm:w-full
+        lg:w-1300px  m-auto">
     <div class="p-t-24px flex items-center mb-16px">
       <img src="/image/x-hot.png" class="m-r-10px" />
       <h2 class="text-15px font-600">相关推荐</h2>
     </div>
     <div class="flex w-full">
-      <div class="flex w-full gap-x-10px items-center">
+      <div class="
+      flex 
+      w-full 
+      gap-x-10px 
+      items-center
+      sm:flex-wrap 
+      sm:px-10px
+      sm:gap-y-10px
+      lg:gap-y-0px
+     
+      ">
         <card-detail :data="list"></card-detail>
-        <div class="w-25% more py-10px px-14px">
+        <div class="
+        sm:flex-basis-48% 
+  sm:max-w-48% 
+  lg:flex-basis-24%
+         more py-10px px-14px">
             <div class="grid grid-cols-3 gap-x-36px gap-y-13.2px">
             <div class="item"  v-for="item in data" :key="item.id">
-              <img :src="item.avatar" class="h-72px w-full rounded-8px" alt="" />
-              <div class="text_ text-center">
+            <div class="relative pt-100%">
+            <img :src="item.avatar" class="h-full absolute w-full rounded-8px top-0 left-0 right-0" alt="" />
+           </div>
+              <div class="text_ text-center mt-3px">
                 <span class="text-11px"> {{ item.name }} </span>
               </div>
             </div>
             </div>
             <div class="text-center mt-12px">
-              <div class="btn rounded-15px text-12px" @click="open">更多游戏</div>
+              <div class="btn rounded-15px text-12px white-nowrap" @click="open">更多游戏</div>
             </div>
         </div>
       </div>

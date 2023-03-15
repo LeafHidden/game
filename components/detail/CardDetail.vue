@@ -1,17 +1,23 @@
 <template>
   <div
-    class="card w-25% relative h-fit rounded-5px"
+    class="card 
+
+  sm:flex-basis-48% 
+  sm:max-w-48% 
+  lg:flex-basis-24%
+    relative h-fit rounded-5px"
     v-for="item in data"
     :key="item.id"
     @click="open(item,router)"
   >
-    <div class="w-full h-201px overflow-hidden" :class="$attrs.className">
-      <img :src="item.cover" class="card_img w-full h-full rounded-5px" />
+
+    <div class="relative pt-66% overflow-hidden">
+            <img :src="item.cover" class="card_img h-full absolute w-full rounded-8px top-0 left-0 right-0" alt="" />
     </div>
     <div class="flex items-center relative p-10px card_text">
       <div class="ml-6px flex w-full items-center justify-between">
-        <h3 class="text-16px font-550">{{ item.name }}</h3>
-        <button class="text-13px btn">秒玩</button>
+        <h3 class="text-16px font-550 _text">{{ item.name }}</h3>
+        <button class="flex-shrink-0 text-13px btn">秒玩</button>
       </div>
     </div>
   </div>

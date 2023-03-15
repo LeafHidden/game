@@ -1,6 +1,16 @@
 <template>
     <div class="w-full  con flex-grow flex-col flex items-center">
-    <div class="flex flex-col h-full index w-1230px  flex-grow">
+    <div class="flex 
+    flex-col 
+    
+    sm:w-full
+    lg:w-1230px  
+    h-full 
+    index 
+    w-1230px 
+  
+
+    flex-grow">
     <!-- 搜索文本区域 -->
     <search/>
     <!-- 热门游戏 -->

@@ -1,9 +1,16 @@
 <template>
   <div class="detail">
     <div class="header w-full bg">
-      <detail-header class="w-1300px m-auto"></detail-header>
+      <detail-header class="
+      sm:w-full
+        lg:w-1300px 
+        m-auto"></detail-header>
     </div>
-    <div class="w-1300px m-auto">
+    <div class="
+    sm:w-full
+        lg:w-1300px 
+    w-1300px 
+    m-auto">
       <div class="w-full flex">
         <div class="detail_loading" v-if="!show">
           <div class="loading"></div>

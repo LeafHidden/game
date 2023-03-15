@@ -1,17 +1,24 @@
 <template>
-  <div class="card relative h-fit rounded-5px"  v-for="item in data" :key="item.id" @click="open(item,router)" >  
+  <div class="container 
+  sm:flex-basis-47% 
+  sm:max-w-47% 
+  lg:flex-basis-24%
   
-    <div class="w-290px h-160px overflow-hidden"  :class="$attrs.className">
+   card relative h-fit rounded-5px"  
+   :class="$attrs.className"
+   v-for="item in data" :key="item.id" @click="open(item,router)" >  
+  
+    <div class=" h-160px overflow-hidden"  :class="$attrs.className">
         <img  :src="item.cover" class="card_img  w-full h-full rounded-5px ">
     </div>
     <div class="tags absolute top-10px " v-if="item.tags">
         <img :src="`/image/${imageArray[Number(item.tags)]}.png`">
     </div>
-    <div class="flex items-center relative p-10px card_text ">
+    <div class="flex w-full  items-center relative p-10px card_text ">
         <img :src="item.avatar" class="w-40px h-40px rounded-3px">
-        <div class="ml-6px flex flex-col">
-            <h3 class="text-16px font-550 ">{{ item.name }}</h3>
-            <span class="text-13px color_text">{{ item.explain }}</span>
+        <div class="ml-6px flex flex-col grow overflow-hidden"  >
+            <h3 class="text-16px font-550 _text inline-block w-full">{{ item.name }}</h3>
+            <span class="text-13px color_text _text inline-block w-full">{{ item.explain }}</span>
         </div>
     </div>
   </div>
@@ -43,6 +50,7 @@ defineProps({
 
 <style lang="scss"  scoped>
 .card{
+  
     box-shadow: 0px 2px 6px 0px 
 		rgba(0, 0, 0, 0.09);
         transition: 0.2s linear;
@@ -61,7 +69,13 @@ defineProps({
 }
 // 热门
 
-
+._text{
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .card_img{
     background: #ccc;
 }
