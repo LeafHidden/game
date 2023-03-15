@@ -16,7 +16,13 @@
     </div>
     <div class="flex-grow relative" style="min-height:100%"  v-loading="loading">
       <div class="wraper overflow-hidden">
-        <div class="flex flex-wrap gap-x-15px gap-y-15px" ref="target">
+        <!-- gap-x-15px  -->
+        <div class="
+        flex 
+        flex-wrap 
+        justify-between
+        gap-y-15px" 
+        ref="target">
           <card :data="cardData" ></card>
         </div>
       </div>

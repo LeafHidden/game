@@ -1,7 +1,7 @@
 <template>
   <div class="container 
-  sm:flex-basis-47% 
-  sm:max-w-47% 
+  sm:flex-basis-48% 
+  sm:max-w-48% 
   lg:flex-basis-24%
   
    card relative h-fit rounded-5px"  
